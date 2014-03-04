@@ -1,5 +1,6 @@
 package org.emmerich.rrt.view;
 
+import org.emmerich.rrt.R;
 import org.emmerich.rrt.db.WorkoutCursorLoader;
 import org.emmerich.rrt.db.WorkoutOpenHelper;
 
@@ -38,12 +39,12 @@ public class WorkoutListViewFragment extends ListFragment implements LoaderCallb
 
         // For the cursor adapter, specify which columns go into which views
         String[] fromColumns = {"name"};
-        int[] toViews = {android.R.id.text1}; // The TextView in simple_list_item_1
+        int[] toViews = {R.id.workout_name}; // The TextView in simple_list_item_1
 
         // Create an empty adapter we will use to display the loaded data.
         // We pass null for the cursor, then update it in onLoadFinished()
         mAdapter = new SimpleCursorAdapter(getActivity(), 
-                android.R.layout.simple_list_item_1, null,
+                R.layout.workout_list_item, null,
                 fromColumns, toViews, 0);
         setListAdapter(mAdapter);
 
