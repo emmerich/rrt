@@ -16,11 +16,15 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 
 public class WorkoutListViewFragment extends ListFragment implements LoaderCallbacks<Cursor> {
 	
 	// This is the Adapter being used to display the list's data
-    private CursorAdapter mAdapter;
+    private SimpleCursorAdapter mAdapter;
     SQLiteDatabase db;
     
     @Override
@@ -39,16 +43,51 @@ public class WorkoutListViewFragment extends ListFragment implements LoaderCallb
         mAdapter = new SimpleCursorAdapter(getActivity(), 
                 R.layout.workout_list_item, null,
                 fromColumns, toViews, 0);
-
+        
+        mAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+			
+			@Override
+			public boolean setViewValue(View arg0, Cursor arg1, int arg2) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+		});
+        
+        
         setListAdapter(mAdapter);
-
         // Prepare the loader.  Either re-connect with an existing one,
         // or start a new one.
         getLoaderManager().initLoader(0, null, this);
+                
+        ((ListView) view).setOnItemClickListener(new ListView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				System.out.println("List item click");
+				System.out.println(arg0);
+				System.out.println(arg1);
+				System.out.println(arg2);
+				System.out.println(arg3);
+			}
+        	
+        });
+        
+//        Button button = (Button) view.findViewById(R.id.workout_list_go);
+//        
+//        button.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View view) {
+//				System.out.println("Go click");
+//			}
+//        	
+//        });
         
     	return view;
     }
-    
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);

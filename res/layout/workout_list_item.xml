@@ -8,5 +8,13 @@
         android:id="@+id/workout_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    
+    <ImageButton
+        android:id="@+id/workout_list_settings"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:src="@drawable/workout_list_settings"
+		android:onClick="workoutSettingsClick"
+    	/>
 
 </LinearLayout>
