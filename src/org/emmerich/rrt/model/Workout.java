@@ -6,9 +6,11 @@ import java.util.List;
  * A Workout is an ordered list of WorkoutEntries. A WorkoutEntry is either an Exercise or a Rest.
  */
 public class Workout {
+	public static WorkoutData DATA = new WorkoutData();
+	
 	private String name;
 	private List<WorkoutEntry> exercises;
-	
+		
 	public Workout(String name, List<WorkoutEntry> exercises) {
 		super();
 		this.name = name;
