@@ -1,9 +1,11 @@
 package org.emmerich.rrt.view;
 
+import org.emmerich.rrt.EditWorkout;
 import org.emmerich.rrt.R;
 import org.emmerich.rrt.model.Workout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
@@ -24,7 +26,7 @@ public class WorkoutListCursorAdapter extends CursorAdapter {
 	}
 
 	@Override
-	public void bindView(View arg0, Context arg1, Cursor arg2) {
+	public void bindView(View arg0, final Context arg1, Cursor arg2) {
 		TextView content = (TextView) arg0.findViewById(R.id.workout_name);
 		content.setText(arg2.getString(arg2.getColumnIndex(Workout.DATA.NAME)));
 		
@@ -33,8 +35,9 @@ public class WorkoutListCursorAdapter extends CursorAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				System.out.println("View clicked: " + v.toString());
-				
+				System.out.println("View clicked: " + v.toString() + " " + arg1.toString());
+				Intent intent = new Intent(arg1, EditWorkout.class);
+				arg1.startActivity(intent);
 			}
 		});
 	}

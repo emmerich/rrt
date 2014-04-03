@@ -19,6 +19,7 @@ public class WorkoutOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		System.out.println("onCreate");
 		db.execSQL(WORKOUT_TABLE_CREATE);
 		db.execSQL("INSERT INTO workout (_id, name) VALUES (0, 'hello')");
 		db.execSQL("INSERT INTO workout (_id, name) VALUES (1, 'hi')");

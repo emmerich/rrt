@@ -1,9 +1,10 @@
-package org.emmerich.rrt.view;
+package org.emmerich.rrt.fragment;
 
 import org.emmerich.rrt.R;
 import org.emmerich.rrt.db.WorkoutCursorLoader;
 import org.emmerich.rrt.db.WorkoutOpenHelper;
 import org.emmerich.rrt.model.Workout;
+import org.emmerich.rrt.view.WorkoutListCursorAdapter;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,7 +22,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class WorkoutListViewFragment extends ListFragment implements LoaderCallbacks<Cursor> {
+public class WorkoutList extends ListFragment implements LoaderCallbacks<Cursor> {
 	
 	// This is the Adapter being used to display the list's data
     private WorkoutListCursorAdapter mAdapter;
