@@ -1,5 +1,7 @@
 package org.emmerich.rrt.fragment;
 
+import org.emmerich.rrt.R;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +13,8 @@ public class EditWorkout extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return super.onCreateView(inflater, container, savedInstanceState);
+		View view = inflater.inflate(R.layout.edit_workout_fragment, container);
+		return view;
 	}
 	
 	@Override

@@ -1,6 +1,6 @@
 package org.emmerich.rrt.view;
 
-import org.emmerich.rrt.EditWorkout;
+import org.emmerich.rrt.EditWorkoutActivity;
 import org.emmerich.rrt.R;
 import org.emmerich.rrt.model.Workout;
 
@@ -36,7 +36,7 @@ public class WorkoutListCursorAdapter extends CursorAdapter {
 			@Override
 			public void onClick(View v) {
 				System.out.println("View clicked: " + v.toString() + " " + arg1.toString());
-				Intent intent = new Intent(arg1, EditWorkout.class);
+				Intent intent = new Intent(arg1, EditWorkoutActivity.class);
 				arg1.startActivity(intent);
 			}
 		});

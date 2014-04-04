@@ -8,12 +8,12 @@ import android.database.Cursor;
 public class WorkoutCursorLoader extends SimpleCursorLoader {
 
 	String query;
-	WorkoutOpenHelper helper;
+	ApplicationDatabaseHelper helper;
 	
 	public WorkoutCursorLoader(Context context, String query) {
 		super(context);
 		this.query = query;
-		helper = new WorkoutOpenHelper(context);
+		helper = new ApplicationDatabaseHelper(context);
 	}
 
 	@Override
