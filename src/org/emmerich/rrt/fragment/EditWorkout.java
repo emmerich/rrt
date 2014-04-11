@@ -2,12 +2,13 @@ package org.emmerich.rrt.fragment;
 
 import org.emmerich.rrt.R;
 import org.emmerich.rrt.data.Workout;
-import org.emmerich.rrt.db.WorkoutCursorLoader;
 
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,11 @@ public class EditWorkout extends Fragment implements LoaderCallbacks<Cursor> {
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
-        return new WorkoutCursorLoader(getActivity(), "SELECT * FROM workout WHERE _id = " + workoutId);
+    	return new CursorLoader(getActivity(),
+    			Uri.parse("content://org.emmerich.rrt"),
+    			new String[] { Workout.NAME },
+    			Workout.ID + " = " + workoutId,
+    			null, null);
     }
 
     // Called when a previously created loader has finished loading

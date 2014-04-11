@@ -27,6 +27,12 @@
             
         </activity>
         
+        <provider
+      		android:name="org.emmerich.rrt.db.ApplicationContentProvider"
+      		android:authorities="org.emmerich.rrt"
+      		android:exported="false">
+   		</provider>
+        
     </application>
 
 </manifest>
