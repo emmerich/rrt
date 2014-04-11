@@ -2,7 +2,7 @@ package org.emmerich.rrt.view;
 
 import org.emmerich.rrt.EditWorkoutActivity;
 import org.emmerich.rrt.R;
-import org.emmerich.rrt.model.Workout;
+import org.emmerich.rrt.data.Workout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,15 +27,17 @@ public class WorkoutListCursorAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View arg0, final Context arg1, Cursor arg2) {
 		TextView content = (TextView) arg0.findViewById(R.id.workout_name);
-		content.setText(arg2.getString(arg2.getColumnIndex(Workout.DATA.NAME)));
+		content.setText(arg2.getString(arg2.getColumnIndex(Workout.NAME)));
+		
+		final int workout_id = arg2.getInt(arg2.getColumnIndex(Workout.ID));
 		
 		ImageButton button = (ImageButton) arg0.findViewById(R.id.workout_list_settings);
 		button.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				System.out.println("View clicked: " + v.toString() + " " + arg1.toString());
 				Intent intent = new Intent(arg1, EditWorkoutActivity.class);
+				intent.putExtra("WORKOUT_ID", workout_id);
 				arg1.startActivity(intent);
 			}
 		});

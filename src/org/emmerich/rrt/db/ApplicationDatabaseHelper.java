@@ -63,19 +63,16 @@ public class ApplicationDatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	private void insertMockRests(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
-//		_id INTEGER PRIMARY KEY, entry_index INTEGER, duration INTEGER, workout_id INTEGER
 		db.execSQL("INSERT INTO rest (_id, entry_index, duration, workout_id) VALUES (0, 1, 60, 0)");
 	}
 
 	private void insertMockExercises(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
-//		_id INTEGER PRIMARY KEY, entry_index INTEGER, workout_id INTEGER, hold_id INTEGER, task_id INTEGER, repetition_id INTEGER
 		db.execSQL("INSERT INTO exercise (_id, entry_index, workout_id, hold_id, task_id, repetition_id) VALUES (0, 0, 0, 1, 3, 0)");
 	}
 
 	private void insertMockWorkouts(SQLiteDatabase db) {
 		db.execSQL("INSERT INTO workout (_id, name) VALUES (0, 'Test Workout')");
+		db.execSQL("INSERT INTO workout (_id, name) VALUES (1, 'Empty Workout')");
 	}
 
 	private void insertMockRepetitions(SQLiteDatabase db) {
