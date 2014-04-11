@@ -23,7 +23,7 @@ public class WorkoutList extends ListFragment implements LoaderCallbacks<Cursor>
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
     		Bundle savedInstanceState) {
     	View view = super.onCreateView(inflater, container, savedInstanceState);
-        mAdapter = new WorkoutListCursorAdapter(getActivity(), null);
+    	mAdapter = new WorkoutListCursorAdapter(getActivity(), null);
         getLoaderManager().initLoader(0, null, this);
         setListAdapter(mAdapter);
     	return view;
@@ -39,7 +39,7 @@ public class WorkoutList extends ListFragment implements LoaderCallbacks<Cursor>
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
     	return new CursorLoader(getActivity(),
-    			Uri.parse("content://org.emmerich.rrt"),
+    			Uri.parse("content://org.emmerich.rrt/"),
     			new String[] { Workout.ID, Workout.NAME },
     			null, null, null);
     }

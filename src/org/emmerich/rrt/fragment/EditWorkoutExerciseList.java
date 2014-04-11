@@ -2,11 +2,13 @@ package org.emmerich.rrt.fragment;
 
 import org.emmerich.rrt.R;
 import org.emmerich.rrt.data.Workout;
+import org.emmerich.rrt.view.EditWorkoutExerciseListCursorAdapter;
 
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -15,15 +17,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class EditWorkout extends Fragment implements LoaderCallbacks<Cursor> {
+public class EditWorkoutExerciseList extends ListFragment implements LoaderCallbacks<Cursor> {
 	
 	private int workoutId;
+	private EditWorkoutExerciseListCursorAdapter adapter; 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.edit_workout_fragment, container, false);
+		View view = super.onCreateView(inflater, container, savedInstanceState);//inflater.inflate(R.layout.edit_workout_exercise_list, container, false);
+		adapter = new EditWorkoutExerciseListCursorAdapter(getActivity(), null);
+		
 		getLoaderManager().initLoader(0, null, this);
+		setListAdapter(adapter);
+		
 		return view;
 	}
 	
@@ -38,7 +45,7 @@ public class EditWorkout extends Fragment implements LoaderCallbacks<Cursor> {
         // creating a Cursor for the data being displayed.
     	return new CursorLoader(getActivity(),
     			Uri.parse("content://org.emmerich.rrt"),
-    			new String[] { Workout.NAME },
+    			new String[] { Workout.ID, Workout.NAME },
     			Workout.ID + " = " + workoutId,
     			null, null);
     }
@@ -47,10 +54,7 @@ public class EditWorkout extends Fragment implements LoaderCallbacks<Cursor> {
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         // Swap the new cursor in.  (The framework will take care of closing the
         // old cursor once we return.)
-    	data.moveToFirst();
-    	TextView name = (TextView) getView().findViewById(R.id.edit_workout_name);
-    	int nameIndex = data.getColumnIndex(Workout.NAME);
-    	name.setText(data.getString(nameIndex));
+    	adapter.swapCursor(data);
     }
 
     // Called when a previously created loader is reset, making the data unavailable
@@ -58,6 +62,7 @@ public class EditWorkout extends Fragment implements LoaderCallbacks<Cursor> {
         // This is called when the last Cursor provided to onLoadFinished()
         // above is about to be closed.  We need to make sure we are no
         // longer using it.
+    	adapter.swapCursor(null);
     }
 	
 	public void setWorkoutId(int workoutId) {
