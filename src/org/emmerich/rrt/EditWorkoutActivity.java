@@ -1,6 +1,7 @@
 package org.emmerich.rrt;
 
 import org.emmerich.rrt.data.Workout;
+import org.emmerich.rrt.db.ApplicationContentProvider;
 import org.emmerich.rrt.fragment.EditWorkoutExerciseList;
 
 import android.database.Cursor;
@@ -34,10 +35,8 @@ public class EditWorkoutActivity extends FragmentActivity implements LoaderCallb
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
     	return new CursorLoader(this,
-    			Uri.parse("content://org.emmerich.rrt"),
-    			new String[] { Workout.NAME },
-    			Workout.ID + " = " + workoutId,
-    			null, null);
+    			ApplicationContentProvider.CONTENT_URI.buildUpon().appendPath("workouts").appendPath(Integer.toString(workoutId)).build(),
+    			new String[] { Workout.NAME }, null, null, null);
     }
 
     // Called when a previously created loader has finished loading

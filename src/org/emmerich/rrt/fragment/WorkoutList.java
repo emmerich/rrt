@@ -1,6 +1,7 @@
 package org.emmerich.rrt.fragment;
 
 import org.emmerich.rrt.data.Workout;
+import org.emmerich.rrt.db.ApplicationContentProvider;
 import org.emmerich.rrt.view.WorkoutListCursorAdapter;
 
 import android.database.Cursor;
@@ -39,7 +40,7 @@ public class WorkoutList extends ListFragment implements LoaderCallbacks<Cursor>
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
     	return new CursorLoader(getActivity(),
-    			Uri.parse("content://org.emmerich.rrt/"),
+    			ApplicationContentProvider.CONTENT_URI.buildUpon().appendPath("workouts").build(),
     			new String[] { Workout.ID, Workout.NAME },
     			null, null, null);
     }

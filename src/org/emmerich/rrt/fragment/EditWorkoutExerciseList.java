@@ -6,6 +6,7 @@ import org.emmerich.rrt.data.Hold;
 import org.emmerich.rrt.data.Repetition;
 import org.emmerich.rrt.data.Task;
 import org.emmerich.rrt.data.Workout;
+import org.emmerich.rrt.db.ApplicationContentProvider;
 import org.emmerich.rrt.view.EditWorkoutExerciseListCursorAdapter;
 
 import android.database.Cursor;
@@ -48,10 +49,10 @@ public class EditWorkoutExerciseList extends ListFragment implements LoaderCallb
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
     	return new CursorLoader(getActivity(),
-    			Uri.parse("content://org.emmerich.rrt/exercise"),
+    			ApplicationContentProvider.CONTENT_URI.buildUpon()
+    				.appendPath("workouts").appendPath(Integer.toString(workoutId)).appendPath("exercises").build(),
     			new String[] { Exercise.ID, Exercise.INDEX, Hold.NAME, Task.NAME, Repetition.TYPE, Repetition.COUNT },
-    			Exercise.WORKOUT_ID + " = " + workoutId,
-    			null, null);
+    			null, null, null);
     }
 
     // Called when a previously created loader has finished loading

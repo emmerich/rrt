@@ -1,5 +1,7 @@
 package org.emmerich.rrt.db;
 
+import org.emmerich.rrt.data.Workout;
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
@@ -12,16 +14,18 @@ public class ApplicationContentProvider extends ContentProvider {
 	
 	private ApplicationDatabaseHelper helper;
 	
-	private static final int EXERCISE_ID = 1;
+	private static final int WORKOUTS_MATCH = 1;
+	private static final int WORKOUT_BY_ID_MATCH = 2;
+	private static final int EXERCISES_BY_WORKOUT_MATCH = 3;
 	
-	private static final String AUTHORITY = "org.emmerich.rrt";
-	private static final String EXERCISE = "exercise";
-	
+	private static final String AUTHORITY = "org.emmerich.rrt";	
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 	
 	private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
-		sURIMatcher.addURI(AUTHORITY, EXERCISE, EXERCISE_ID);
+		sURIMatcher.addURI(AUTHORITY, "workouts", WORKOUTS_MATCH);
+		sURIMatcher.addURI(AUTHORITY, "workouts/#", WORKOUT_BY_ID_MATCH);
+		sURIMatcher.addURI(AUTHORITY, "workouts/#/exercises", EXERCISES_BY_WORKOUT_MATCH);
 	}
 	
 	@Override
@@ -36,22 +40,25 @@ public class ApplicationContentProvider extends ContentProvider {
 		SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
 		
 		int uriType = sURIMatcher.match(arg0);
-		
+
 		switch(uriType)
 		{
-			case EXERCISE_ID:
-				builder.setTables("exercise");
-				// SELECT E.id AND H.name AND T.name AND R.type AND R.count 
-				// FROM exercise AS E JOIN hold AS H JOIN task AS T JOIN repetition AS R
-				// WHERE E.exerciseId = id
-				
-				// JOIN 
-//				builder.q
-				//foo LEFT OUTER JOIN bar ON (foo.id = bar.foo_id)
-				return null;
-			default:
+			case WORKOUTS_MATCH:
 				builder.setTables("workout");
 				return builder.query(db, projection, selection, selectionArgs, null, null, sortOrder);
+			case WORKOUT_BY_ID_MATCH:
+				builder.setTables("workout");
+				String workoutId = arg0.getLastPathSegment();
+				return builder.query(db, projection, Workout.ID + " = " + workoutId, selectionArgs, null, null, sortOrder);
+			case EXERCISES_BY_WORKOUT_MATCH:
+				System.out.println(arg0.getPathSegments());
+				String query = 
+						"SELECT exercise._id, exercise.exercise_index, hold.hold_name, task.task_name, repetition.repetition_type, repetition.repetition_count " +
+						"FROM exercise JOIN hold JOIN task JOIN repetition " +
+						"WHERE exercise.workout_id = 0";
+				return db.rawQuery(query, null);
+			default:
+				return null;
 		}
 		
 	}

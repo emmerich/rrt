@@ -2,6 +2,10 @@ package org.emmerich.rrt.view;
 
 import org.emmerich.rrt.EditWorkoutActivity;
 import org.emmerich.rrt.R;
+import org.emmerich.rrt.data.Exercise;
+import org.emmerich.rrt.data.Hold;
+import org.emmerich.rrt.data.Repetition;
+import org.emmerich.rrt.data.Task;
 import org.emmerich.rrt.data.Workout;
 
 import android.content.Context;
@@ -27,13 +31,16 @@ public class EditWorkoutExerciseListCursorAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View arg0, final Context arg1, Cursor arg2) {
 		TextView hold = (TextView) arg0.findViewById(R.id.exercise_hold);
-		hold.setText(arg2.getString(arg2.getColumnIndex(Workout.ID)));
+		hold.setText(arg2.getString(arg2.getColumnIndex(Hold.NAME)));
 		
 		TextView task = (TextView) arg0.findViewById(R.id.exercise_task);
+		task.setText(arg2.getString(arg2.getColumnIndex(Task.NAME)));
+		
 		TextView repetition = (TextView) arg0.findViewById(R.id.exercise_repetition);
+		repetition.setText(arg2.getString(arg2.getColumnIndex(Repetition.TYPE)));
 		
 		
-		final int workout_id = arg2.getInt(arg2.getColumnIndex(Workout.ID));
+//		final int workout_id = arg2.getInt(arg2.getColumnIndex(Workout.ID));
 	}
 
 	@Override
