@@ -1,0 +1,1 @@
+SELECT exercise._id, exercise.exercise_index, hold.hold_name, task.task_name, repetition.repetition_type, repetition.repetition_count FROM exercise JOIN hold JOIN task JOIN repetition WHERE exercise.workout_id = 0 AND hold._id = exercise.hold_id AND task._id = exercise.task_id AND repetition._id = exercise.repetition_id;

@@ -1,5 +1,7 @@
 package org.emmerich.rrt.db;
 
+import java.util.List;
+
 import org.emmerich.rrt.data.Workout;
 
 import android.content.ContentProvider;
@@ -40,6 +42,7 @@ public class ApplicationContentProvider extends ContentProvider {
 		SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
 		
 		int uriType = sURIMatcher.match(arg0);
+		Integer workoutId;
 
 		switch(uriType)
 		{
@@ -48,14 +51,14 @@ public class ApplicationContentProvider extends ContentProvider {
 				return builder.query(db, projection, selection, selectionArgs, null, null, sortOrder);
 			case WORKOUT_BY_ID_MATCH:
 				builder.setTables("workout");
-				String workoutId = arg0.getLastPathSegment();
+				workoutId = Integer.parseInt(arg0.getLastPathSegment());
 				return builder.query(db, projection, Workout.ID + " = " + workoutId, selectionArgs, null, null, sortOrder);
 			case EXERCISES_BY_WORKOUT_MATCH:
-				System.out.println(arg0.getPathSegments());
-				String query = 
-						"SELECT exercise._id, exercise.exercise_index, hold.hold_name, task.task_name, repetition.repetition_type, repetition.repetition_count " +
-						"FROM exercise JOIN hold JOIN task JOIN repetition " +
-						"WHERE exercise.workout_id = 0";
+				List<String> pathSegments = arg0.getPathSegments();
+				String workoutString = pathSegments.get(pathSegments.size() - 2);
+				workoutId = Integer.parseInt(workoutString);
+				
+				String query = "SELECT exercise._id, exercise.exercise_index, hold.hold_name, task.task_name, repetition.repetition_type, repetition.repetition_count FROM exercise JOIN hold JOIN task JOIN repetition WHERE exercise.workout_id = " + workoutId + " AND hold._id = exercise.hold_id AND task._id = exercise.task_id AND repetition._id = exercise.repetition_id";
 				return db.rawQuery(query, null);
 			default:
 				return null;

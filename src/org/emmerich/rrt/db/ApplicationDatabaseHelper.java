@@ -89,35 +89,53 @@ public class ApplicationDatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	private void insertMockExercises(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO exercise (" + Exercise.ID + "," + Exercise.INDEX + "," + Exercise.WORKOUT_ID + "," + Exercise.HOLD_ID + "," + Exercise.TASK_ID + "," + Exercise.REPETITION_ID + ") VALUES (0, 0, 0, 1, 3, 0)");
+		String query = "INSERT INTO exercise (" + Exercise.ID + "," + Exercise.INDEX + "," + Exercise.WORKOUT_ID + "," + Exercise.HOLD_ID + "," + Exercise.TASK_ID + "," + Exercise.REPETITION_ID + ") VALUES (0, 0, 0, 1, 3, 0)";
+		db.execSQL(query);
 	}
 
 	private void insertMockWorkouts(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO workout (" + Workout.ID + ", " + Workout.NAME + ") VALUES (0, 'Test Workout')");
-		db.execSQL("INSERT INTO workout (" + Workout.ID + ", " + Workout.NAME + ") VALUES (1, 'Empty Workout')");
+		String query1 = "INSERT INTO workout (" + Workout.ID + ", " + Workout.NAME + ") VALUES (0, 'Test Workout')";
+		db.execSQL(query1);
+		
+		String query2 = "INSERT INTO workout (" + Workout.ID + ", " + Workout.NAME + ") VALUES (1, 'Empty Workout')";
+		db.execSQL(query2);
 	}
 
 	private void insertMockRepetitions(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO repetition (" + Repetition.ID + ", " + Repetition.TYPE + ", " + Repetition.COUNT + ") VALUES (0, 'count', 10)");
-		db.execSQL("INSERT INTO repetition (" + Repetition.ID + ", " + Repetition.TYPE + ", " + Repetition.COUNT + ") VALUES (1, 'time', 60)");
+		String query1 = "INSERT INTO repetition (" + Repetition.ID + ", " + Repetition.TYPE + ", " + Repetition.COUNT + ") VALUES (0, 'count', 10)";
+		db.execSQL(query1);
+		String query2 = "INSERT INTO repetition (" + Repetition.ID + ", " + Repetition.TYPE + ", " + Repetition.COUNT + ") VALUES (1, 'time', 60)";
+		db.execSQL(query2);
 	}
 
 	private void insertMockTasks(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (0, 'Dead Hang')");
-		db.execSQL("INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (1, 'Bent Arm Hang')");
-		db.execSQL("INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (2, 'Offset Hang')");
-		db.execSQL("INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (3, 'Pull-up')");
-		db.execSQL("INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (4, 'Offset pull-up')");
-		db.execSQL("INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (5, 'One-arm pull-up')");
-		db.execSQL("INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (6, 'L-Hang')");
-		db.execSQL("INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (7, 'Front Lever')");
+		String deadHang = "INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (0, 'Dead Hang')";
+		db.execSQL(deadHang);
+		String deadArmHang = "INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (1, 'Bent Arm Hang')";
+		db.execSQL(deadArmHang);
+		String offsetHang = "INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (2, 'Offset Hang')";
+		db.execSQL(offsetHang);
+		String pullUp = "INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (3, 'Pull-up')";
+		db.execSQL(pullUp);
+		String offsetPullUp = "INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (4, 'Offset pull-up')";
+		db.execSQL(offsetPullUp);
+		String oneArmPullUp = "INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (5, 'One-arm pull-up')";
+		db.execSQL(oneArmPullUp);
+		String lHang = "INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (6, 'L-Hang')";
+		db.execSQL(lHang);
+		String frontLever = "INSERT INTO task (" + Task.ID + ", " + Task.NAME + ") VALUES (7, 'Front Lever')";
+		db.execSQL(frontLever);
 	}
 
 	private void insertMockHolds(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO hold (" + Hold.ID + ", " + Hold.NAME + ") VALUES (0, 'Jug')");
-		db.execSQL("INSERT INTO hold (" + Hold.ID + ", " + Hold.NAME + ") VALUES (1, '4-finger Edge')");
-		db.execSQL("INSERT INTO hold (" + Hold.ID + ", " + Hold.NAME + ") VALUES (2, '3-finger Pocket')");
-		db.execSQL("INSERT INTO hold (" + Hold.ID + ", " + Hold.NAME + ") VALUES (3, '2-finger Pocket')");
+		String jug = "INSERT INTO hold (" + Hold.ID + ", " + Hold.NAME + ") VALUES (0, 'Jug')";
+		db.execSQL(jug);
+		String fourFingerEdge = "INSERT INTO hold (" + Hold.ID + ", " + Hold.NAME + ") VALUES (1, '4-finger Edge')";
+		db.execSQL(fourFingerEdge);
+		String threeFingerPocket = "INSERT INTO hold (" + Hold.ID + ", " + Hold.NAME + ") VALUES (2, '3-finger Pocket')";
+		db.execSQL(threeFingerPocket);
+		String twoFingerPocket = "INSERT INTO hold (" + Hold.ID + ", " + Hold.NAME + ") VALUES (3, '2-finger Pocket')";
+		db.execSQL(twoFingerPocket);
 	}
 	
 
