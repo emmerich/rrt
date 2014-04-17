@@ -5,6 +5,7 @@ import org.emmerich.rrt.R;
 import org.emmerich.rrt.data.Exercise;
 import org.emmerich.rrt.data.Hold;
 import org.emmerich.rrt.data.Repetition;
+import org.emmerich.rrt.data.RepetitionType;
 import org.emmerich.rrt.data.Task;
 import org.emmerich.rrt.data.Workout;
 
@@ -36,11 +37,11 @@ public class EditWorkoutExerciseListCursorAdapter extends CursorAdapter {
 		TextView task = (TextView) arg0.findViewById(R.id.exercise_task);
 		task.setText(arg2.getString(arg2.getColumnIndex(Task.NAME)));
 		
-		TextView repetition = (TextView) arg0.findViewById(R.id.exercise_repetition);
-		repetition.setText(arg2.getString(arg2.getColumnIndex(Repetition.TYPE)));
-		
-		
-//		final int workout_id = arg2.getInt(arg2.getColumnIndex(Workout.ID));
+		String repetitionType = arg2.getString(arg2.getColumnIndex(Repetition.TYPE));
+		RepetitionView repetition = (RepetitionView) arg0.findViewById(R.id.exercise_repetition);
+
+		repetition.setRepetitionType(RepetitionType.getById(repetitionType));
+		repetition.setText(arg2.getString(arg2.getColumnIndex(Repetition.COUNT)));
 	}
 
 	@Override
