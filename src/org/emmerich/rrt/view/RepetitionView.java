@@ -21,25 +21,27 @@ public class RepetitionView extends TextView {
 	public RepetitionView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
+
 		
 	@Override
 	public void setText(CharSequence text, BufferType type) {
 		String formattedText = (String) text;
-		formattedText += " reps";
-//		
-//		switch(this.type) {
-//			case COUNT:
-//				formattedText = text + " reps";
-//				break;
-//			case TIME:
-//				formattedText = text + " secs";
-//				break;
-//			case TO_FAIL:
-//				formattedText = "To Fail";
-//				break;
-//			default:
-//				throw new IllegalArgumentException("Cannot format repetition: " + text);
-//		}
+		
+		if(this.type != null) {
+			switch(this.type) {
+				case COUNT:
+					formattedText += " reps";
+					break;
+				case TIME:
+					formattedText += " secs";
+					break;
+				case TO_FAIL:
+					formattedText = "To Fail";
+					break;
+				default:
+					throw new IllegalArgumentException("Cannot format repetition: " + text);
+			}
+		}
 		
 		super.setText(formattedText, type);
 	}

@@ -1,18 +1,14 @@
 package org.emmerich.rrt.fragment;
 
-import org.emmerich.rrt.R;
 import org.emmerich.rrt.data.Exercise;
 import org.emmerich.rrt.data.Hold;
 import org.emmerich.rrt.data.Repetition;
 import org.emmerich.rrt.data.Task;
-import org.emmerich.rrt.data.Workout;
 import org.emmerich.rrt.db.ApplicationContentProvider;
 import org.emmerich.rrt.view.EditWorkoutExerciseListCursorAdapter;
 
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -20,7 +16,6 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class EditWorkoutExerciseList extends ListFragment implements LoaderCallbacks<Cursor> {
 	
@@ -30,8 +25,8 @@ public class EditWorkoutExerciseList extends ListFragment implements LoaderCallb
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = super.onCreateView(inflater, container, savedInstanceState);//inflater.inflate(R.layout.edit_workout_exercise_list, container, false);
-		adapter = new EditWorkoutExerciseListCursorAdapter(getActivity(), null);
+		View view = super.onCreateView(inflater, container, savedInstanceState);
+		adapter = new EditWorkoutExerciseListCursorAdapter(getActivity(), null, getFragmentManager());
 		
 		getLoaderManager().initLoader(0, null, this);
 		setListAdapter(adapter);
