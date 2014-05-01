@@ -2,7 +2,7 @@ package org.emmerich.rrt;
 
 import org.emmerich.rrt.data.Workout;
 import org.emmerich.rrt.db.ApplicationContentProvider;
-import org.emmerich.rrt.fragment.EditWorkoutExerciseList;
+import org.emmerich.rrt.fragment.EditableExerciseList;
 
 import android.database.Cursor;
 import android.net.Uri;
@@ -23,10 +23,10 @@ public class EditWorkoutActivity extends FragmentActivity implements LoaderCallb
 		workoutId = getIntent().getExtras().getInt("WORKOUT_ID");
 		setContentView(R.layout.edit_workout_view);
 		
-		EditWorkoutExerciseList editWorkoutExerciseList = new EditWorkoutExerciseList();
-		editWorkoutExerciseList.setWorkoutId(workoutId);
+		EditableExerciseList editableExerciseList = new EditableExerciseList();
+		editableExerciseList.setWorkoutId(workoutId);
 		
-		getSupportFragmentManager().beginTransaction().add(R.id.edit_workout_container, editWorkoutExerciseList).commit();
+		getSupportFragmentManager().beginTransaction().add(R.id.edit_workout_container, editableExerciseList).commit();
 		getSupportLoaderManager().initLoader(0, null, this);
 	}
 	
