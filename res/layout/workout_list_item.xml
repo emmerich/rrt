@@ -15,5 +15,12 @@
     	android:layout_height="wrap_content"
     	android:src="@drawable/workout_list_settings"
    	/>
+    
+    <ImageButton
+        android:id="@+id/workout_list_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/workout_list_settings"
+    />
 
 </LinearLayout>

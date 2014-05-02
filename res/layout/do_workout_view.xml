@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/do_workout_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+	    android:id="@+id/do_workout_name"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="16dp"
+	    android:textSize="18sp" />
+    
+    <FrameLayout
+        android:id="@+id/list_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    />
+    
+    <Button android:id="@+id/add_new_workout"
+	   android:layout_height="wrap_content" 
+	   android:layout_width="match_parent"     
+	   android:text="Begin"
+	   android:layout_alignParentBottom="true"
+	   android:onClick="handleBeginClick" />
+    
+    
+    
+</LinearLayout>

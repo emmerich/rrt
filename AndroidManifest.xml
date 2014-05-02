@@ -28,6 +28,11 @@
             android:theme="@android:style/Theme.NoTitleBar" >
             
         </activity>
+        <activity android:name="org.emmerich.rrt.DoWorkoutActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            
+        </activity>
         
         <provider
       		android:name="org.emmerich.rrt.db.ApplicationContentProvider"

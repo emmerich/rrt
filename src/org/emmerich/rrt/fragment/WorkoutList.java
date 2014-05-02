@@ -1,5 +1,6 @@
 package org.emmerich.rrt.fragment;
 
+import org.emmerich.rrt.DoWorkoutActivity;
 import org.emmerich.rrt.EditWorkoutActivity;
 import org.emmerich.rrt.R;
 import org.emmerich.rrt.data.Workout;
@@ -82,8 +83,8 @@ public class WorkoutList extends ListFragment implements LoaderCallbacks<Cursor>
     		
     		final int workout_id = arg2.getInt(arg2.getColumnIndex(Workout.ID));
     		
-    		ImageButton button = (ImageButton) arg0.findViewById(R.id.workout_list_settings);
-    		button.setOnClickListener(new OnClickListener() {
+    		ImageButton editButton = (ImageButton) arg0.findViewById(R.id.workout_list_settings);
+    		editButton.setOnClickListener(new OnClickListener() {
     			
     			@Override
     			public void onClick(View v) {
@@ -92,6 +93,17 @@ public class WorkoutList extends ListFragment implements LoaderCallbacks<Cursor>
     				arg1.startActivity(intent);
     			}
     		});
+    		
+    		ImageButton startWorkoutButton = (ImageButton) arg0.findViewById(R.id.workout_list_go);
+			startWorkoutButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(arg1, DoWorkoutActivity.class);
+					intent.putExtra("WORKOUT_ID", workout_id);
+					arg1.startActivity(intent);
+				}
+			});
     	}
 
     	@Override
